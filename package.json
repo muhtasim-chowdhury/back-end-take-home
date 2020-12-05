@@ -1,0 +1,24 @@
+{
+  "name": "back-end-take-home",
+  "version": "1.0.0",
+  "description": "Implement a small api for interacting with a callback based third-party service",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muhtasim-chowdhury/back-end-take-home.git"
+  },
+  "author": "Muhtasim Chowdhury",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/muhtasim-chowdhury/back-end-take-home/issues"
+  },
+  "homepage": "https://github.com/muhtasim-chowdhury/back-end-take-home#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.1"
+  }
+}
