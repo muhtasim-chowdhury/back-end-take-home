@@ -13,11 +13,12 @@ app.post('/request', (req, res) => {
 	// initiate request to third party service
 	// create unique identifier for this request
 	const id = nextAvailableId++
-	docObj.id = {body, time, createdTimestamp: new Date().getTime()}
+	docObj.id = {body, createdTimestamp: new Date().getTime()}
 	fetch('http://example.com/request', {
 		method: 'POST', 
 		body: JSON.stringify({body, callback: `/callback/${id}`})
-	})
+	}).then(data => console.log(data))
+	.catch(err => console.err(err))
 	res.send(body)
 })
 
