@@ -2,7 +2,14 @@ const express = require('express')
 const fetch = require('node-fetch')
 const PORT = 5000
 let nextAvailableId = 1
+
+/* the state will be stored here in memory via docObj
+If you want to keep it stored even while this server is offline or shuts down,
+you can save it with a SQL database. The columns would be the id, body, status,
+detail, createdTimeStamp and ModifiedTimeStamp where each row in the SQL table 
+is information for a request  */
 const docObj = {}
+
 const app = express()
 app.use(express.json())
 app.use(express.text())
@@ -11,10 +18,10 @@ app.get('/', (req, res) => res.send('Hello World!'))
 
 app.post('/request', (req, res) => {
 	const {body} = req.body
-	// initiate request to third party service
 	// create unique identifier for this request
 	const id = nextAvailableId++
 	docObj[id] = {body, createdTimeStamp: new Date().getTime()}
+	// initiate request to third party service
 	fetch('http://example.com/request', {
 		method: 'POST', 
 		body: JSON.stringify({body, callback: `/callback/${id}`})
